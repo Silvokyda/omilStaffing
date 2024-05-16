@@ -1,27 +1,32 @@
+
 <?php
-require 'PHPMailerAutoload.php';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-$mail = new PHPMailer;
+    // $mail->Host = 'smtp.gmail.com'; 
+    // $mail->SMTPAuth = true;
+    // $mail->Username = 'silvansowino1@gmail.com';
+    // $mail->Password = 'grthmlmwzwnjexfe'; 
+    // $mail->SMTPSecure = 'tls'; 
 
-// SMTP configuration
-$mail->isSMTP();
-$mail->Host = 'smtp.gmail.com'; 
-$mail->SMTPAuth = true;
-$mail->Username = 'silvansowino1@gmail.com';
-$mail->Password = 'grthmlmwzwnjexfe'; 
-$mail->SMTPSecure = 'tls'; 
-$mail->Port = 587; 
+    // Retrieve form data
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
 
-// Email content
-$mail->setFrom($_POST['email'], $_POST['username']);
-$mail->addAddress('oss@omilstaffingservices.com', 'Recipient Name'); 
-$mail->Subject = $_POST['subject']; 
-$mail->Body = $_POST['message'];
 
-// Send email
-if ($mail->send()) {
-    echo 'Message has been sent';
+    $to = "oss@omilstaffingservices.com";
+    $headers = "From: $username <$email>";
+    $body = "Name: $username\nEmail: $email\nPhone: $phone\n\nMessage:\n$message";
+
+    if (mail($to, $subject, $body, $headers)) {
+        echo "Email sent successfully!";
+    } else {
+        echo "Failed to send email.";
+    }
 } else {
-    echo 'Message could not be sent. Mailer Error: ' . $mail->ErrorInfo;
+    echo "Invalid request method.";
 }
 ?>
+

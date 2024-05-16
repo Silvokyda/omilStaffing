@@ -269,7 +269,7 @@
                     </div>
                     <div class="col-lg-8 col-md-12 col-sm-12 form-column">
                         <div class="form-inner">
-                            <form method="post" action="./mail/sendmail.php" id="contact-form" class="default-form"> 
+                            <form method="post" action="#" id="contact-form" class="default-form">
                                 <div class="row clearfix">
                                     <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                         <input type="text" name="username" placeholder="Full Name" required="">
@@ -291,6 +291,7 @@
                                     </div>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -439,7 +440,27 @@
         </button>
     </div>
 
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#contact-form').submit(function(e) {
+                e.preventDefault();
+                var formData = $(this).serialize(); 
+        
+                $.ajax({
+                    type: 'POST',
+                    url: 'mail/sendMail.php', 
+                    data: formData,
+                    success: function(response) {
+                        console.log('Email sent successfully!');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error sending email:', error);
+                    }
+                });
+            });
+        });
+    </script>
     <!-- jequery plugins -->
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/popper.min.js"></script>
