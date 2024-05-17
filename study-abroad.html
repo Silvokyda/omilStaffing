@@ -30,6 +30,9 @@
     <link href="assets/css/color.css" rel="stylesheet" />
     <link href="assets/css/style.css" rel="stylesheet" />
     <link href="assets/css/responsive.css" rel="stylesheet" />
+
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://sheetdb.io/handlebars.js"></script>
   </head>
 
   <!-- page wrapper -->
@@ -365,7 +368,7 @@
                         </li>
                         <li>
                           <i class="far fa-comments"></i
-                          ><a href="blog-details.html">02 Comments</a>
+                          >Comments</a>
                         </li>
                       </ul>
                       <h2>
@@ -439,6 +442,9 @@
                           scholarship application process successfully and turn
                           your dream of studying abroad into a reality.
                         </p>
+
+                        <button class="theme-btn-one" onclick="window.open('https://forms.visme.co/formsPlayer/jwoxk7kq-registration-sign-up-form', '_blank')">Enroll Now</button>
+
                       </div>
                       <div class="post-share-option clearfix">
                         <ul class="post-tags pull-left clearfix">
@@ -483,114 +489,142 @@
                         <p>"Studying abroad is not just about gaining knowledge; it's about embracing new cultures, broadening horizons, and discovering oneself in the process."</p>
                     </div>
                 </div>                
-                <div class="comment-box">
-                  <div class="group-title">
-                    <h3>2 Comments</h3>
-                  </div>
-                  <div class="comment">
-                    <figure class="thumb-box">
-                      <img src="assets/images/news/comment-1.png" alt="" />
-                    </figure>
-                    <div class="comment-inner">
-                      <div class="comment-info clearfix">
-                        <h4>Kevin Martin</h4>
-                        <span class="post-date"
-                          ><i class="far fa-clock"></i>22 Aug 2024</span
-                        >
-                      </div>
-                      <p>
-                        Lorem ipsum is simply free text used by copytyping
-                        refreshing. Neque porro est qui dolorem ipsum quia quaed
-                        inventore veritatis et quasi architecto beatae vitae
-                        dicta sunt explicabo.
-                      </p>
-                      <a href="blog-details.html" class="reply-btn">Reply</a>
+                <div class="comment-box" id="comment-box">
+                    <div class="group-title">
+                        <h3 id="comment-count">Loading Comments...</h3>
                     </div>
-                  </div>
-                  <div class="comment">
-                    <figure class="thumb-box">
-                      <img src="assets/images/news/comment-2.png" alt="" />
-                    </figure>
-                    <div class="comment-inner">
-                      <div class="comment-info clearfix">
-                        <h4>Jessica Brown</h4>
-                        <span class="post-date"
-                          ><i class="far fa-clock"></i>21 Aug 2024</span
-                        >
-                      </div>
-                      <p>
-                        Lorem ipsum is simply free text used by copytyping
-                        refreshing. Neque porro est qui dolorem ipsum quia quaed
-                        inventore veritatis et quasi architecto beatae vitae
-                        dicta sunt explicabo.
-                      </p>
-                      <a href="blog-details.html" class="reply-btn">Reply</a>
-                    </div>
-                  </div>
+                    <!-- Comments will be dynamically added here -->
                 </div>
+                
                 <div class="comments-form-area">
-                  <div class="group-title">
-                    <h3>Leave a Comment</h3>
-                  </div>
-                  <form
-                    method="post"
-                    action=""
-                    id="contact-form"
-                    class="default-form"
-                  >
-                    <div class="row clearfix">
-                      <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                        <input
-                          type="text"
-                          name="username"
-                          placeholder="Full Name"
-                          required=""
-                        />
-                      </div>
-                      <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                        <input
-                          type="email"
-                          name="email"
-                          placeholder="Email Address"
-                          required=""
-                        />
-                      </div>
-                      <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-                        <input
-                          type="text"
-                          name="phone"
-                          required=""
-                          placeholder="Phone Number"
-                        />
-                      </div>
-                      <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-                        <input
-                          type="text"
-                          name="subject"
-                          required=""
-                          placeholder="Subject"
-                        />
-                      </div>
-                      <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                        <textarea
-                          name="message"
-                          placeholder="Write Message"
-                        ></textarea>
-                      </div>
-                      <div
-                        class="col-lg-12 col-md-12 col-sm-12 form-group message-btn"
-                      >
-                        <button
-                          class="theme-btn-one"
-                          type="submit"
-                          name="submit-form"
-                        >
-                          Submit Comment
-                        </button>
-                      </div>
+                    <div class="group-title">
+                        <h3>Leave a Comment</h3>
                     </div>
-                  </form>
+                    <form method="post" id="comment-form" class="default-form">
+                        <div class="row clearfix">
+                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                <input type="text" name="username" id="username" placeholder="Full Name" required="">
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                <input type="email" name="email" id="email" placeholder="Email Address" required="">
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                <textarea name="comment" id="comment" placeholder="Write Message"></textarea>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
+                                <button class="theme-btn-one" type="submit" name="submit-form">Submit Comment</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
+                
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+
+                        function successFunc(data) {
+                            console.log(data);
+                        }
+
+                        fetchComments();
+                
+                        document.getElementById("comment-form").addEventListener("submit", function(event) {
+                            event.preventDefault();
+                            submitComment();
+                        });
+                    });
+
+                    // Function to fetch comments from Google Sheets
+                    function fetchComments() {
+                    fetch("https://sheetdb.io/api/v1/adprsh8h66dt8")
+                        .then(response => response.json())
+                        .then(data => {
+                            const commentBox = document.getElementById("comment-box");
+                            const commentCount = document.getElementById("comment-count");
+                            commentCount.textContent = data.length + " Comments";
+
+                            data.forEach(comment => {
+                                const commentDiv = document.createElement("div");
+                                commentDiv.classList.add("comment");
+
+                                const commentThumb = document.createElement("figure");
+                                commentThumb.classList.add("thumb-box");
+                                commentThumb.innerHTML = "<img src='assets/images/news/comment-2.png' alt='' />";
+
+                                commentDiv.appendChild(commentThumb);
+
+                                const commentInner = document.createElement("div");
+                                commentInner.classList.add("comment-inner");
+
+                                const commentInfo = document.createElement("div");
+                                commentInfo.classList.add("comment-info", "clearfix");
+
+                                const authorName = document.createElement("h4");
+                                authorName.textContent = comment.Author;
+
+                                const postDate = document.createElement("span");
+                                postDate.classList.add("post-date");
+                                postDate.innerHTML = "<i class='far fa-clock'></i>" + comment.Date;
+
+                                const commentText = document.createElement("p");
+                                commentText.textContent = comment.Message;
+
+                                const replyBtn = document.createElement("a");
+                                replyBtn.classList.add("reply-btn");
+                                replyBtn.textContent = "Reply";
+                                replyBtn.href = "blog-details.html";
+
+                                commentInfo.appendChild(authorName);
+                                commentInfo.appendChild(postDate);
+                                commentInner.appendChild(commentInfo);
+                                commentInner.appendChild(commentText);
+                                commentInner.appendChild(replyBtn);
+                                commentDiv.appendChild(commentInner);
+                                commentBox.appendChild(commentDiv);
+                            });
+                        })
+                        .catch(error => console.error("Error fetching comments:", error));
+                }
+
+
+                    // Function to submit comment to Google Sheets
+                    function submitComment() {
+                        const username = document.getElementById("username").value;
+                        const email = document.getElementById("email").value;
+                        const comment = document.getElementById("comment").value;
+                        const date = new Date().toLocaleDateString();
+
+                        fetch('https://sheetdb.io/api/v1/adprsh8h66dt8', {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                data: [
+                                    {
+                                        'Author': username,
+                                        'Email': email,
+                                        'Message': comment,
+                                        'Date': date
+                                    }
+                                ]
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Comment added successfully:', data);
+                            document.getElementById("username").value = "";
+                            document.getElementById("email").value = "";
+                            document.getElementById("comment").value = "";
+
+                            location.reload();
+                        })
+                        .catch(error => console.error("Error adding comment:", error));
+                    }
+
+                </script>
+                
+                
               </div>
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12 sidebar-side">
@@ -911,8 +945,8 @@
 
     <!-- main-js -->
     <script src="assets/js/script.js"></script>
+    
   </body>
   <!-- End of .page_wrapper -->
 
-  <!-- Mirrored from azim.commonsupport.com/Omil Stafings/blog-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 04 May 2024 08:43:43 GMT -->
 </html>
