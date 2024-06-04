@@ -35,6 +35,18 @@
   gtag('config', 'G-46NC5YDY88');
 </script>
 
+<style>
+    #scrollVideo {
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+        width: 320px;
+        height: 240px;
+        z-index: 9999;
+        display: none; 
+    }
+</style>
+
 </head>
 
 
@@ -494,6 +506,22 @@
         </section>
         <!-- agency-section end -->
 
+        <!--ad-->
+        <video id="scrollVideo" controls>
+            <source src="assets/videos/PureInfinity.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    
+        <script>
+            window.addEventListener('scroll', function() {
+                var video = document.getElementById('scrollVideo');
+                if (window.scrollY > 0 && video.paused) {
+                    video.style.display = 'block';
+                    video.play();
+                }
+            });
+        </script>
+        <!--ad-->
 
         <!-- funfact-section -->
         <section class="funfact-section centred">
