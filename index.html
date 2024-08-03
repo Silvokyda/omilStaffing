@@ -484,12 +484,32 @@
         <!-- agency-section end -->
 
         <!--ad-->
+        
+        <div class="col-lg-4 col-md-12 col-sm-12 image-column">
+            <div class="inner-box">
+                <!-- <figure class="image-box">
+                    <iframe id="myVideo" width="660" height="600"
+                            src="https://www.youtube.com/embed/hEBlP1vMS2Y?autoplay=1&mute=0"
+                            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </figure> -->
+            </div>
+        </div>
+        
+        <script>
+            // Ensure the video autoplays with sound when the page loads
+            document.addEventListener("DOMContentLoaded", function() {
+                var iframe = document.getElementById("myVideo");
+                iframe.src += "&autoplay=1&mute=0";
+            });
+        </script>
+
+
         <!-- <video id="scrollVideo" controls>
             <source src="assets/videos/PureInfinity.mp4" type="video/mp4">
             Your browser does not support the video tag.
-        </video> -->
+        </video>
     
-        <!-- <script>
+        <script>
             window.addEventListener('scroll', function() {
                 var video = document.getElementById('scrollVideo');
                 if (window.scrollY > 0 && video.paused) {
