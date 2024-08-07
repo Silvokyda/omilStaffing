@@ -4132,8 +4132,9 @@ div#mCSB_1_container{
   position: relative;
   display: block;
   background: #fff;
-  padding-right: 30px;
-  padding-bottom: 30px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  margin-top: 20%;
 }
 
 .image_block_2 .image-box .image img{
@@ -4143,7 +4144,7 @@ div#mCSB_1_container{
 .image_block_2 .image-box .icon-box{
   position: absolute;
   left: 50%;
-  top: 50%;
+  top:50%;
   transform: translate(-50%,-50%);
 }
 
