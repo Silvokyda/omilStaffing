@@ -333,16 +333,16 @@ img {
 .sec-title p{
   position: relative;
   display: block;
-  font-size: 16px;
+  font-size: 2rem;
   line-height: 26px;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 7px;
 }
 
 .sec-title h2{
   position: relative;
   display: block;
-  font-size: 50px;
+  font-size:1.1rem;
   line-height: 65px;
   font-weight: 700;
   margin: 0px;
@@ -2925,7 +2925,7 @@ div#mCSB_1_container{
   max-width: 100%;
   width: auto;
   margin: 0 auto;
-  opacity: 0.2;
+  opacity: 1;
   -webkit-transition: all 500ms ease;
   -moz-transition: all 500ms ease;
   -ms-transition: all 500ms ease;
